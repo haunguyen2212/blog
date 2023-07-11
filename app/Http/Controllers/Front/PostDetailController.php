@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Repositories\PostRepository;
 use Illuminate\Http\Request;
 
-class PostController extends Controller
+class PostDetailController extends Controller
 {
-    protected $post;
+    private $post;
 
     public function __construct(
         PostRepository $postRepository
@@ -17,8 +17,8 @@ class PostController extends Controller
         $this->post = $postRepository;
     }
 
-    public function index(){
-        $data['posts'] = $this->post->getPosts(0, 'id', 'desc', 6);
-        return view('front.post', $data);
+    public function index($id){
+        $data['post'] = $this->post->getById($id);
+        return view('front.post_detail', $data);
     }
 }

@@ -1,5 +1,7 @@
 @extends('front.master')
 
+@section('title', 'Trang chủ')
+
 @section('content')
 <section class="blog-posts">
   <div class="container">
@@ -15,7 +17,7 @@
                     </div>
                     <div class="down-content">
                       <span>Lifestyle</span>
-                      <a href="post-details.html"><h4>{{ $post->title }}</h4></a>
+                      <a href="{{ route('post_detail.index', $post->id) }}"><h4>{{ $post->title }}</h4></a>
                       <ul class="post-info">
                         <li><a href="#">{{ $post->author_name }}</a></li>
                         <li><a href="#">{{ \Carbon\Carbon::parse($post->public_date)->format('F d, Y') }}</a></li>
@@ -48,7 +50,7 @@
               @endforeach
             <div class="col-lg-12">
               <div class="main-button">
-                <a href="blog.html">Xem tất cả bài viết</a>
+                <a href="{{ route('post.index') }}">Xem tất cả bài viết</a>
               </div>
             </div>
           </div>
@@ -60,4 +62,10 @@
     </div>
   </div>
 </section>
+@endsection
+
+@section('script')
+  <script>
+    $('.nav-item.home').addClass('active');
+  </script>
 @endsection

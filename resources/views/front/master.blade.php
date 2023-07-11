@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet">
 
-    <title>Stand Blog Posts</title>
+    <title>@yield('title')</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -44,24 +44,24 @@ https://templatemo.com/tm-551-stand-blog
     <header class="">
       <nav class="navbar navbar-expand-lg">
         <div class="container">
-          <a class="navbar-brand" href="index.html"><h2>HTR Blog<em></em></h2></a>
+          <a class="navbar-brand" href="{{ route('home.index') }}"><h2>HTR Blog<em></em></h2></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-              <li class="nav-item active">
+              <li class="nav-item home">
                 <a class="nav-link" href="{{ route('home.index') }}">Trang Chủ
                   <span class="sr-only">(current)</span>
                 </a>
               </li> 
-              <li class="nav-item">
+              <li class="nav-item category">
                 <a class="nav-link" href="about.html">Danh Mục</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item post">
                 <a class="nav-link" href="{{ route('post.index') }}">Bài Viết</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item contact">
                 <a class="nav-link" href="contact.html">Liên Hệ</a>
               </li>
             </ul>
@@ -90,7 +90,7 @@ https://templatemo.com/tm-551-stand-blog
     <!-- Banner Ends Here -->
 
     <section class="call-to-action">
-      <div class="container">
+      {{-- <div class="container">
         <div class="row">
           <div class="col-lg-12">
             <div class="main-content">
@@ -108,7 +108,7 @@ https://templatemo.com/tm-551-stand-blog
             </div>
           </div>
         </div>
-      </div>
+      </div> --}}
     </section>
 
     @yield('content')
@@ -158,6 +158,6 @@ https://templatemo.com/tm-551-stand-blog
           }
       }
     </script>
-
+    @yield('script')
   </body>
 </html>

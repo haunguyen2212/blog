@@ -15,7 +15,7 @@
         <div class="content">
           <ul>
             @foreach ($recent_post as $post)
-              <li><a href="post-details.html">
+              <li><a href="{{ route('post_detail.index', $post->id) }}">
                 <h5>{{ $post->title }}</h5>
                 <span>{{ \Carbon\Carbon::parse($post->public_date)->format('F d, Y') }}</span>
               </a></li>

@@ -477,7 +477,7 @@ header .navbar {
 	color: #f48840;
 }
 
-.blog-posts .down-content p {
+.blog-posts .down-content>div {
 	padding: 25px 0px;
 	margin: 25px 0px;
 	border-top: 1px solid #eee;
