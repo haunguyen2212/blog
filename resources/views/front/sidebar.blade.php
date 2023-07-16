@@ -17,7 +17,7 @@
             @foreach ($recent_post as $post)
               <li><a href="{{ route('post_detail.index', $post->id) }}">
                 <h5>{{ $post->title }}</h5>
-                <span>{{ \Carbon\Carbon::parse($post->public_date)->format('F d, Y') }}</span>
+                <span>{{ \Carbon\Carbon::parse($post->public_date)->diffForHumans() }}</span>
               </a></li>
             @endforeach
           </ul>
@@ -31,12 +31,9 @@
         </div>
         <div class="content">
           <ul>
-            <li><a href="#">- Cấu trúc dữ liệu & Giải thuật</a></li>
-            <li><a href="#">- PHP cơ bản</a></li>
-            <li><a href="#">- Laravel framework</a></li>
-            <li><a href="#">- Responsive Templates</a></li>
-            <li><a href="#">- HTML5 / CSS3 Templates</a></li>
-            <li><a href="#">- Creative &amp; Unique</a></li>
+            @foreach ($categories as $category)
+              <li><a href="#">- {{ $category->name }}</a></li>
+            @endforeach
           </ul>
         </div>
       </div>

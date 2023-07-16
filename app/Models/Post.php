@@ -29,4 +29,10 @@ class Post extends Model
                     ->where('tags.is_delete', 0)
                     ->select('tags.id', 'tags.name');
     }
+
+    public function comments(){
+        return $this->hasMany(Comment::class, 'post_id', 'id')
+                    ->where('comments.is_delete', 0)
+                    ->select('post_id', 'parent_id', 'user_id', 'user_name', 'content');
+    }
 }

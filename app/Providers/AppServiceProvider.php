@@ -25,6 +25,7 @@ class AppServiceProvider extends ServiceProvider
             $common = new Common();
             $data = [
                 'recent_post' => $common->getRecentPost(),
+                'categories' => $common->getCategories(),
                 'tags'        => $common->getTags()
             ];
             View::composer(['front.sidebar'], function($view) use ($data){

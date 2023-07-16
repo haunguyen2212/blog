@@ -21,7 +21,7 @@ class HomeController extends Controller
     }
 
     public function index(){
-        $data['posts'] = $this->post->getPosts(5);
+        $data['posts'] = $this->post->getPosts(config('constant.PAGINATION_FRONT'));
         return view('front.home', $data);
     }
 }

@@ -20,7 +20,7 @@
                       <a href="{{ route('post_detail.index', $post->id) }}"><h4>{{ $post->title }}</h4></a>
                       <ul class="post-info">
                         <li><a href="#">{{ $post->author_name }}</a></li>
-                        <li><a href="#">{{ \Carbon\Carbon::parse($post->public_date)->format('F d, Y') }}</a></li>
+                        <li><a href="#">{{ \Carbon\Carbon::parse($post->public_date)->format(config('constant.DATE_FORMAT_VIEW')) }}</a></li>
                         <li><a href="#">12 Comments</a></li>
                       </ul>
                       <p>{{ $post->introduction }}</p>
