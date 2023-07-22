@@ -23,13 +23,23 @@ class AppServiceProvider extends ServiceProvider
     {
         if(!$this->app->runningInConsole()){
             $common = new Common();
-            $data = [
-                'recent_post' => $common->getRecentPost(),
-                'categories' => $common->getCategories(),
-                'tags'        => $common->getTags()
-            ];
-            View::composer(['front.sidebar'], function($view) use ($data){
-                $view->with($data);
+
+            $tags = $common->getTags();
+            $categories = $common->getCategories();
+            $trending_posts = $common->getTrendingPost();
+            $latest_posts = $common->getLatestPost();
+
+            View::composer(['front.components.sidebar'], function($view) use ($tags, $categories, $trending_posts, $latest_posts){
+                $view->with([
+                    'trending_posts' => $trending_posts,
+                    'latest_posts' => $latest_posts,
+                    'categories' => $categories,
+                    'tags' => $tags
+                ]);
+            });
+
+            View::composer(['front.components.header'], function($view) use ($categories){
+                $view->with(['categories' => $categories]);
             });
         }  
     }

@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Post;
+use Illuminate\Support\Facades\DB;
 
 class PostRepository
 {
@@ -31,21 +32,6 @@ class PostRepository
           return $pagination ? $query->get() : $query->paginate($pagination);
      }
 
-     public function getRecentPost($limit = 0){
-          $query = $this->post->where('is_delete', 0)
-                    ->where('is_public', 1)
-                    ->orderBy('public_date', 'desc')
-                    ->select([
-                         'posts.id',
-                         'posts.title',
-                         'posts.public_date'
-                    ]);
-          if($limit){
-               $query->take($limit);
-          }
-          return  $query->get();
-     }
-
      public function getById($id){
           return $this->post->with('tags')
                     ->join('users', 'users.id', 'posts.author')
@@ -58,5 +44,26 @@ class PostRepository
                     ->where('posts.is_delete', 0)
                     ->where('posts.is_public', 1)
                     ->findOrFail($id);
+     }
+
+     public function getTopTrending($limit){
+          return $this->post->leftJoin('post_views', 'posts.id', 'post_views.post_id')
+                         ->join('users', 'users.id', 'posts.author')
+                         ->where('posts.is_delete', 0)
+                         ->where('posts.is_public', 1)
+                         ->groupBy([
+                              'posts.id',
+                              'posts.title',
+                              'users.name',
+                         ])
+                         ->select([
+                              'posts.id',
+                              'posts.title',
+                              'users.name as author_name',
+                              DB::raw('COUNT(post_views.id) as views')
+                         ])
+                         ->orderBy('views', 'desc')
+                         ->take($limit)
+                         ->get();
      }
 }

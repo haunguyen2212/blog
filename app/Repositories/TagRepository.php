@@ -13,14 +13,6 @@ class TagRepository
         $this->tag = $tag;
     }
 
-    public function getTags($limit = 0, $pagination = 0){
-        $query = $this->tag->where('is_delete', 0);
-        if($limit){
-            $query->take($limit);
-        }
-        return $pagination ? $query->get() : $query->paginate($pagination);
-    }
-
     public function getById($id){
         return $this->tag->find($id);
     }

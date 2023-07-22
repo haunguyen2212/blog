@@ -3,69 +3,73 @@
 @section('title', 'Trang chủ')
 
 @section('content')
-<section class="blog-posts">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8">
-        <div class="all-blog-posts">
-          <div class="row">
-              @foreach ($posts as $post)
-                <div class="col-lg-12">
-                  <div class="blog-post">
-                    <div class="blog-thumb">
-                      <img src="assets/images/{{ $post->image }}" alt="">
-                    </div>
-                    <div class="down-content">
-                      <span>Lifestyle</span>
-                      <a href="{{ route('post_detail.index', $post->id) }}"><h4>{{ $post->title }}</h4></a>
-                      <ul class="post-info">
-                        <li><a href="#">{{ $post->author_name }}</a></li>
-                        <li><a href="#">{{ \Carbon\Carbon::parse($post->public_date)->format(config('constant.DATE_FORMAT_VIEW')) }}</a></li>
-                        <li><a href="#">12 Comments</a></li>
-                      </ul>
-                      <p>{{ $post->introduction }}</p>
-                      <div class="post-options">
-                        <div class="row">
-                          <div class="col-6">
-                            @if (count($post->tags) > 0)
-                              <ul class="post-tags">
-                                <li><i class="fa fa-tags"></i></li>
-                                @foreach ($post->tags as $key => $tag)
-                                  <li><a href="#">{{ $tag->name }}</a>{{ $key === $post->tags->keys()->last() ? '' : ', ' }}</li>
-                                @endforeach
-                              </ul>
-                            @endif
-                          </div>
-                          <div class="col-6">
-                            <ul class="post-share">
-                              <li><i class="fa fa-share-alt"></i></li>
-                              <li><a href="#">Facebook</a></li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              @endforeach
-            <div class="col-lg-12">
-              <div class="main-button">
-                <a href="{{ route('post.index') }}">Xem tất cả bài viết</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4">
-        @include('front.sidebar')
-      </div>
-    </div>
-  </div>
-</section>
-@endsection
 
-@section('script')
-  <script>
-    $('.nav-item.home').addClass('active');
-  </script>
+    @if(isset($top_post) && $top_post->isNotEmpty())
+        <!-- ======= Post Grid Section ======= -->
+        <section id="posts" class="posts">
+            <div class="container" data-aos="fade-up">
+                <div class="row g-5">
+                    <div class="col-lg-4">
+                        <div class="post-entry-1 lg">
+                            <a href="{{ route('post_detail.index', $top_post->first()->id) }}"><img src="{{ asset('front/img/post-landscape-1.jpg') }}" alt="" class="img-fluid"></a>
+                            <div class="post-meta"><span class="date">{{ $top_post->first()->category_name ?? '' }}</span> <span class="mx-1">&bullet;</span> <span>{{ \Carbon\Carbon::parse($top_post->first()->public_date)->format(config('constant.DATE_FORMAT_VIEW')) }}</span></div>
+                            <h2><a href="{{ route('post_detail.index', $top_post->first()->id) }}">{{ $top_post->first()->title ?? '' }}</a></h2>
+                            <p class="mb-4 d-block">{{ $top_post->first()->introduction ?? '' }}</p>
+            
+                            <div class="d-flex align-items-center author">
+                            <div class="photo"><img src="img/person-1.jpg" alt="" class="img-fluid"></div>
+                            <div class="name">
+                                <h3 class="m-0 p-0">Cameron Williamson</h3>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="row g-5">
+                            <div class="col-lg-4 border-start custom-border">
+                                @foreach ($top_post->skip(1)->take(ceil($top_post->count()) / 2) as $post)
+                                    <div class="post-entry-1">
+                                        <a href="{{ route('post_detail.index', $post->id) }}"><img src="{{ asset('front/img/post-landscape-2.jpg') }}" alt="" class="img-fluid"></a>
+                                        <div class="post-meta"><span class="date">{{ $post->category_name ?? '' }}</span> <span class="mx-1">&bullet;</span> <span>{{ \Carbon\Carbon::parse($post->public_date)->format(config('constant.DATE_FORMAT_VIEW')) }}</span></div>
+                                        <h2><a href="{{ route('post_detail.index', $post->id) }}">{{ $post->title ?? '' }}</a></h2>
+                                    </div>
+                                @endforeach
+                            </div>
+                            <div class="col-lg-4 border-start custom-border">
+                                @foreach ($top_post->skip(ceil($top_post->count()) / 2 + 1) as $post)
+                                    <div class="post-entry-1">
+                                        <a href="{{ route('post_detail.index', $post->id) }}"><img src="{{ asset('front/img/post-landscape-3.jpg') }}" alt="" class="img-fluid"></a>
+                                        <div class="post-meta"><span class="date">{{ $post->category_name ?? '' }}</span> <span class="mx-1">&bullet;</span> <span>{{ \Carbon\Carbon::parse($post->public_date)->format(config('constant.DATE_FORMAT_VIEW')) }}</span></div>
+                                        <h2><a href="{{ route('post_detail.index', $post->id) }}">{{ $post->title ?? '' }}</a></h2>
+                                    </div>
+                                @endforeach
+                            </div>
+            
+                            <!-- Trending Section -->
+                            <div class="col-lg-4">
+                            @if (isset($trending))
+                                <div class="trending">
+                                    <h3>Trending</h3>
+                                    <ul class="trending-post">           
+                                        @foreach ($trending as $key => $post)
+                                            <li>
+                                                <a href="{{ route('post_detail.index', $post->id) }}">
+                                                <span class="number">{{ $key + 1 }}</span>
+                                                <h3>{{ $post->title }}</h3>
+                                                <span class="author">{{ $post->author_name }}</span>
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                            </div> <!-- End Trending Section -->
+                        </div>
+                    </div>
+        
+                </div> <!-- End .row -->
+            </div>
+        </section> <!-- End Post Grid Section -->
+    @endif
+    
 @endsection

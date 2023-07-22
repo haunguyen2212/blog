@@ -15,7 +15,12 @@ class CategorySeeder extends Seeder
     {
         DB::table('categories')->insert([
             [
-                'name' => 'Cấu trúc dữ liệu & giải thuật',
+                'name' => 'Cấu trúc dữ liệu',
+                'created_by' => 1,
+                'updated_by' => 1
+            ],
+            [
+                'name' => 'Giải thuật',
                 'created_by' => 1,
                 'updated_by' => 1
             ],

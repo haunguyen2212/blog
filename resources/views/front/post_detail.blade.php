@@ -3,129 +3,141 @@
 @section('title', 'Bài viết')
 
 @section('content')
-<section class="blog-posts grid-system">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8">
-          <div class="all-blog-posts">
+    <section class="single-post-content">
+        <div class="container">
             <div class="row">
-              <div class="col-lg-12">
-                <div class="blog-post">
-                  <div class="blog-thumb">
-                    <img src="assets/images/{{ $post->image ?? '' }}" alt="">
-                  </div>
-                  <div class="down-content">
-                    <span>Lifestyle</span>
-                    <h4>{{ $post->title ?? '' }}</h4>
-                    <ul class="post-info">
-                      <li><a href="#">{{ $post->author_name ?? '' }}</a></li>
-                      <li><a href="#">{{ \Carbon\Carbon::parse($post->public_date)->format(config('constant.DATE_FORMAT_VIEW')) }}</a></li>
-                      <li><a href="#">{{ $number_comment ?? '0' }} bình luận</a></li>
-                    </ul>
-                    <div>{!! $post->content ?? '' !!}</div>
-                    <div class="post-options">
-                      <div class="row">
-                        <div class="col-6">
-                          <ul class="post-tags">
-                            <li><i class="fa fa-tags"></i></li>
-                            @foreach ($post->tags as $key => $tag)
-                              <li><a href="#">{{ $tag->name }}</a>{{ $key === $post->tags->keys()->last() ? '' : ', ' }}</li>
+                <div class="col-md-9 post-content" data-aos="fade-up">
+                    <!-- ======= Single Post Content ======= -->
+                    <div class="single-post">
+                        <div class="post-meta">
+                        <span class="date">{{ $post->category_name ?? '' }}</span>
+                        <span class="mx-1">&bullet;</span> <span>{{ \Carbon\Carbon::parse($post->public_date)->format(config('constant.DATE_FORMAT_VIEW')) }}</span>
+                        </div>
+                        <h1 class="mb-5">
+                        {{ $post->title ?? '' }}
+                        </h1>
+                        {!! $post->content ?? '' !!}
+                    </div>
+                    <!-- End Single Post Content -->
+        
+                    <!-- ======= Comments ======= -->
+                    <div class="comments">
+                        <h5 class="comment-title py-4">{{ $number_comment ?? '' }} Bình Luận</h5>
+                        @if (isset($comments) && count($comments) > 0)
+                            @foreach ($comments as $comment)
+                                <div class="comment d-flex mb-4">
+                                    <div class="flex-shrink-0">
+                                        <div class="avatar avatar-sm rounded-circle">
+                                        <img
+                                            class="avatar-img"
+                                            src="{{ asset('front/img/person-5.jpg') }}"
+                                            alt=""
+                                            class="img-fluid"
+                                        />
+                                        </div>
+                                    </div>
+                                    <div class="flex-grow-1 ms-2 ms-sm-3">
+                                        <div class="comment-meta d-flex align-items-baseline">
+                                        <h6 class="me-2">{{ $comment->user_name ?? '' }}</h6>
+                                        <span class="text-muted">{{ \Carbon\Carbon::parse($comment->updated_at)->diffForHumans() }}</span>
+                                        </div>
+                                        <div class="comment-body">
+                                            {!! htmlspecialchars($comment->content ?? '') !!}
+                                        </div>
+                        
+                                        @if (count($comment->node_comments) > 0)
+                                            <div class="comment-replies bg-light p-3 mt-3 rounded">
+                                                <h6
+                                                    class="comment-replies-title mb-4 text-muted text-uppercase"
+                                                >
+                                                    {{ count($comment->node_comments) }} phản hồi
+                                                </h6>
+                            
+                                                @foreach ($comment->node_comments as $reply_key => $reply)
+                                                    <div class="reply d-flex {{ $reply_key === $comment->node_comments->keys()->last() ? '' : 'mb-4' }}">
+                                                        <div class="flex-shrink-0">
+                                                        <div class="avatar avatar-sm rounded-circle">
+                                                            <img
+                                                            class="avatar-img"
+                                                            src="{{ asset('front/img/person-4.jpg') }}"
+                                                            alt=""
+                                                            class="img-fluid"
+                                                            />
+                                                        </div>
+                                                        </div>
+                                                        <div class="flex-grow-1 ms-2 ms-sm-3">
+                                                        <div class="reply-meta d-flex align-items-baseline">
+                                                            <h6 class="mb-0 me-2">{{ $reply->user_name ?? '' }}</h6>
+                                                            <span class="text-muted">{{ \Carbon\Carbon::parse($reply->updated_at)->diffForHumans() }}</span>
+                                                        </div>
+                                                        <div class="reply-body">
+                                                            {!! htmlspecialchars($reply->content ?? '') !!}
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        @endif
+                                        
+                                    </div>
+                                </div>
                             @endforeach
-                          </ul>
-                        </div>
-                        <div class="col-6">
-                          <ul class="post-share">
-                            <li><i class="fa fa-share-alt"></i></li>
-                            <li><a href="#">Facebook</a>,</li>
-                            <li><a href="#"> Twitter</a></li>
-                          </ul>
-                        </div>
-                      </div>
+                            
+                        @endif
                     </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-12">
-                <div class="sidebar-item comments">
-                  <div class="sidebar-heading">
-                    <h2>{{ $number_comment }} bình luận</h2>
-                  </div>
-                  @if (isset($comments) && count($comments) > 0)
-                    <div class="content">
-                      <ul class="row">
-                        @foreach ($comments as $comment)
-                          <li class="col-12">
-                            <div class="author-thumb">
-                              <img src="assets/images/comment-author-01.jpg" alt="">
+                    <!-- End Comments -->
+                    <hr>
+                    <!-- ======= Comments Form ======= -->
+                    <div class="row justify-content-center mt-2">
+                        <div class="col-lg-12">
+                            <h5 class="comment-title">Viết bình luận</h5>
+                            <div class="row">
+                                <div class="col-lg-6 mb-3">
+                                    <label for="comment-name">Name</label>
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="comment-name"
+                                        placeholder="Enter your name"
+                                    />
+                                </div>
+                                <div class="col-lg-6 mb-3">
+                                    <label for="comment-email">Email</label>
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="comment-email"
+                                        placeholder="Enter your email"
+                                    />
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="comment-message">Message</label>
+                    
+                                    <textarea
+                                        class="form-control"
+                                        id="comment-message"
+                                        placeholder="Enter your name"
+                                        cols="30"
+                                        rows="10"
+                                    ></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <input
+                                        type="submit"
+                                        class="btn btn-primary"
+                                        value="Post comment"
+                                    />
+                                </div>
                             </div>
-                            <div class="right-content">
-                              <h4>{{ $comment->user_name ?? '' }}<span>{{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}</span></h4>
-                              <p>{{ $comment->content ?? '' }}</p>
-                            </div>
-                          </li>
-                          @foreach ($comment->node_comments as $node_comment)
-                            <li class="col-12 replied">
-                              <div class="author-thumb">
-                                <img src="assets/images/comment-author-02.jpg" alt="">
-                              </div>
-                              <div class="right-content">
-                                <h4>{{ $node_comment->user_name ?? '' }}<span>{{ \Carbon\Carbon::parse($node_comment->created_at)->diffForHumans() }}</span></h4>
-                                <p>{{ $node_comment->content ?? '' }}</p>
-                              </div>
-                          </li>
-                          @endforeach
-                        @endforeach
-                      </ul>
+                        </div>
                     </div>
-                  @endif
+                    <!-- End Comments Form -->
                 </div>
-              </div>
-              <div class="col-lg-12">
-                <div class="sidebar-item submit-comment">
-                  <div class="sidebar-heading">
-                    <h2>Viết bình luận</h2>
-                  </div>
-                  <div class="content">
-                    <form id="comment" action="#" method="post">
-                      <div class="row">
-                        <div class="col-md-6 col-sm-12">
-                          <fieldset>
-                            <input name="name" type="text" id="name" placeholder="Tên của bạn" required="">
-                          </fieldset>
-                        </div>
-                        <div class="col-md-6 col-sm-12">
-                          <fieldset>
-                            <input name="email" type="text" id="email" placeholder="Địa chỉ email" required="">
-                          </fieldset>
-                        </div>
-                        <div class="col-lg-12">
-                          <fieldset>
-                            <textarea name="message" rows="6" id="message" placeholder="Nội dung" required=""></textarea>
-                          </fieldset>
-                        </div>
-                        <div class="col-lg-12">
-                          <fieldset>
-                            <button type="submit" id="form-submit" class="main-button">Bình luận</button>
-                          </fieldset>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
+                <div class="col-md-3">
+                    @include('front.components.sidebar')
                 </div>
-              </div>
+                
             </div>
-          </div>
         </div>
-        <div class="col-lg-4">
-          @include('front.sidebar')
-        </div>
-      </div>
-    </div>
-</section>
-@endsection
-
-@section('script')
-  <script>
-    $('.nav-item.post').addClass('active');
-  </script>
+    </section>
 @endsection
