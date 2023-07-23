@@ -51,7 +51,7 @@
                             <span class="mx-1">&bullet;</span> <span>{{ \Carbon\Carbon::parse($post->public_date)->format(config('constant.DATE_FORMAT_VIEW')) }}</span>
                         </div>
                         <h2 class="mb-2">
-                            <a href="{{ route('post_detail.index', $post->id) }}"
+                            <a href="{{ route('post_detail.index', $post->slug) }}"
                             >{{ $post->title ?? '' }}</a
                             >
                         </h2>
@@ -77,7 +77,7 @@
                             <span class="mx-1">&bullet;</span> <span>{{ \Carbon\Carbon::parse($post->public_date)->format(config('constant.DATE_FORMAT_VIEW')) }}</span>
                         </div>
                         <h2 class="mb-2">
-                            <a href="{{ route('post_detail.index', $post->id) }}"
+                            <a href="{{ route('post_detail.index', $post->slug) }}"
                             >{{ $post->title ?? '' }}</a
                             >
                         </h2>

@@ -8,6 +8,8 @@ return [
     'PAGINATION_FRONT' => 5,
     'MAX_POST_TOP' => 9,
     'MAX_POST_SIDEBAR' => 6,
+    'MAX_POST_FOOTER' => 4,
+    'MAX_POST_CATEGORY' => 5,
     'TOP_TRENDING' => 5,
     'MAX_TAG' => 10,
     'MAX_CATEGORY' => 15,

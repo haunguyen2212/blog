@@ -10,7 +10,7 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a href="{{ route('home.index') }}">Trang chủ</a></li>
-          <li class="dropdown"><a href="category.html"><span>Danh mục</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+          <li class="dropdown"><a href="{{ route('category.index') }}"><span>Danh mục</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             @if (isset($categories) && count($categories) > 0)
               <ul>
                 @foreach ($categories as $category)

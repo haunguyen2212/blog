@@ -23,6 +23,6 @@ class Comment extends Model
     ];
 
     public function node_comments(){
-        return $this->hasMany(Comment::class, 'parent_id', 'id')->where('is_delete', 0);
+        return $this->hasMany(Comment::class, 'parent_id', 'id')->where('is_delete', 0)->orderBy('created_at', 'asc');
     }
 }

@@ -18,16 +18,19 @@ class TagSeeder extends Seeder
         DB::table('tags')->insert([
             [
                 'name' => 'PHP',
+                'slug' => 'php',
                 'created_by' => 1,
                 'updated_by' => 1,
             ],
             [
                 'name' => 'Laravel',
+                'slug' => 'laravel',
                 'created_by' => 1,
                 'updated_by' => 1,
             ],
             [
                 'name' => 'Algorithm',
+                'slug' => 'algorithm',
                 'created_by' => 1,
                 'updated_by' => 1,
             ],

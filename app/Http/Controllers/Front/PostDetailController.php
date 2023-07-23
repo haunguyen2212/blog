@@ -20,10 +20,11 @@ class PostDetailController extends Controller
         $this->comment = $commentRepository;
     }
 
-    public function index($id){
-        $data['post'] = $this->post->getById($id);
-        $data['comments'] = $this->comment->getComments($id);
-        $data['number_comment'] = $this->comment->countComment($id);
+    public function index($slug){
+        $post = $this->post->getBySlug($slug);
+        $data['post'] = $post;
+        $data['comments'] = $this->comment->getComments($post->id);
+        $data['number_comment'] = $this->comment->countComment($post->id);
         return view('front.post_detail', $data);
     }
 }

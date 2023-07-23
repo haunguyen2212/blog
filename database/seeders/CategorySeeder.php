@@ -16,16 +16,19 @@ class CategorySeeder extends Seeder
         DB::table('categories')->insert([
             [
                 'name' => 'Cấu trúc dữ liệu',
+                'slug' => 'cau-truc-du-lieu',
                 'created_by' => 1,
                 'updated_by' => 1
             ],
             [
                 'name' => 'Giải thuật',
+                'slug' => 'giai-thuat',
                 'created_by' => 1,
                 'updated_by' => 1
             ],
             [
                 'name' => 'Laravel',
+                'slug' => 'laravel',
                 'created_by' => 1,
                 'updated_by' => 1
             ]

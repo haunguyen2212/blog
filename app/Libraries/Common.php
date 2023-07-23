@@ -5,6 +5,7 @@ namespace App\Libraries;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
+use App\Models\TopPost;
 use Illuminate\Support\Facades\DB;
 
 class Common
@@ -15,7 +16,7 @@ class Common
     }
 
     public function getCategories(){
-        return Category::where('is_delete', 0)->select('id', 'name')->take(config('constant.MAX_CATEGORY'))->get();
+        return Category::where('is_delete', 0)->select('id', 'name', 'slug')->take(config('constant.MAX_CATEGORY'))->get();
     }
 
     public function getTrendingPost(){
@@ -27,6 +28,7 @@ class Common
             ->groupBy([
                 'posts.id',
                 'posts.title',
+                'posts.slug',
                 'posts.public_date',
                 'categories.name',
                 'users.name',
@@ -34,6 +36,7 @@ class Common
             ->select([
                 'posts.id',
                 'posts.title',
+                'posts.slug',
                 'posts.public_date',
                 'categories.name as category_name',
                 'users.name as author_name',
@@ -53,11 +56,28 @@ class Common
                     ->select([
                         'posts.id',
                         'posts.title',
+                        'posts.slug',
                         'posts.public_date',
                         'categories.name as category_name',
                         'users.name as author_name'
                     ])
                     ->take(config('constant.MAX_POST_SIDEBAR'))
                     ->get();
+    }
+
+    public function getTopPost(){
+        return TopPost::join('posts', 'posts.id', 'top_post.post_id')
+                        ->join('categories', 'categories.id', 'posts.category_id')
+                        ->where('top_post.is_delete', 0)
+                        ->where('posts.is_public', 1)
+                        ->where('posts.is_delete', 0)
+                        ->select([
+                            'posts.id',
+                            'posts.title',
+                            'posts.slug',
+                            'categories.name as category_name'
+                        ])->orderBy('order', 'asc')
+                        ->take(config('constant.MAX_POST_FOOTER'))
+                        ->get();
     }
 }

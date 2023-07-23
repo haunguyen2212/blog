@@ -11,76 +11,44 @@
             <p><a href="about.html" class="footer-link-more">Learn More</a></p>
           </div>
           <div class="col-6 col-lg-2">
-            <h3 class="footer-heading">Navigation</h3>
+            <h3 class="footer-heading">Điều hướng</h3>
             <ul class="footer-links list-unstyled">
-              <li><a href="index.html"><i class="bi bi-chevron-right"></i> Home</a></li>
-              <li><a href="index.html"><i class="bi bi-chevron-right"></i> Blog</a></li>
-              <li><a href="category.html"><i class="bi bi-chevron-right"></i> Categories</a></li>
-              <li><a href="single-post.html"><i class="bi bi-chevron-right"></i> Single Post</a></li>
-              <li><a href="about.html"><i class="bi bi-chevron-right"></i> About us</a></li>
-              <li><a href="contact.html"><i class="bi bi-chevron-right"></i> Contact</a></li>
+              <li><a href="{{ route('home.index') }}"><i class="bi bi-chevron-right"></i> Trang chủ</a></li>
+              <li><a href="{{ route('category.index') }}"><i class="bi bi-chevron-right"></i> Danh mục</a></li>
+              <li><a href="{{ route('post.index') }}"><i class="bi bi-chevron-right"></i> Bài viết</a></li>
+              <li><a href="single-post.html"><i class="bi bi-chevron-right"></i> Thông tin</a></li>
+              <li><a href="about.html"><i class="bi bi-chevron-right"></i> Liên hệ</a></li>
             </ul>
           </div>
           <div class="col-6 col-lg-2">
-            <h3 class="footer-heading">Categories</h3>
-            <ul class="footer-links list-unstyled">
-              <li><a href="category.html"><i class="bi bi-chevron-right"></i> Business</a></li>
-              <li><a href="category.html"><i class="bi bi-chevron-right"></i> Culture</a></li>
-              <li><a href="category.html"><i class="bi bi-chevron-right"></i> Sport</a></li>
-              <li><a href="category.html"><i class="bi bi-chevron-right"></i> Food</a></li>
-              <li><a href="category.html"><i class="bi bi-chevron-right"></i> Politics</a></li>
-              <li><a href="category.html"><i class="bi bi-chevron-right"></i> Celebrity</a></li>
-              <li><a href="category.html"><i class="bi bi-chevron-right"></i> Startups</a></li>
-              <li><a href="category.html"><i class="bi bi-chevron-right"></i> Travel</a></li>
-
-            </ul>
+            <h3 class="footer-heading">Danh mục</h3>
+            @if(isset($categories) && count($categories) > 0)
+              <ul class="footer-links list-unstyled">
+                @foreach ($categories as $category)
+                  <li><a href="category.html"><i class="bi bi-chevron-right"></i> {{ $category->name ?? '' }}</a></li>
+                @endforeach
+              </ul>
+            @endif
           </div>
 
           <div class="col-lg-4">
-            <h3 class="footer-heading">Recent Posts</h3>
+            <h3 class="footer-heading">Nổi bật</h3>
 
+            @if (isset($top_posts) && count($top_posts) > 0)
             <ul class="footer-links footer-blog-entry list-unstyled">
-              <li>
-                <a href="single-post.html" class="d-flex align-items-center">
-                  <img src="img/post-sq-1.jpg" alt="" class="img-fluid me-3">
-                  <div>
-                    <div class="post-meta d-block"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                    <span>5 Great Startup Tips for Female Founders</span>
-                  </div>
-                </a>
-              </li>
-
-              <li>
-                <a href="single-post.html" class="d-flex align-items-center">
-                  <img src="img/post-sq-2.jpg" alt="" class="img-fluid me-3">
-                  <div>
-                    <div class="post-meta d-block"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                    <span>What is the son of Football Coach John Gruden, Deuce Gruden doing Now?</span>
-                  </div>
-                </a>
-              </li>
-
-              <li>
-                <a href="single-post.html" class="d-flex align-items-center">
-                  <img src="img/post-sq-3.jpg" alt="" class="img-fluid me-3">
-                  <div>
-                    <div class="post-meta d-block"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                    <span>Life Insurance And Pregnancy: A Working Mom’s Guide</span>
-                  </div>
-                </a>
-              </li>
-
-              <li>
-                <a href="single-post.html" class="d-flex align-items-center">
-                  <img src="img/post-sq-4.jpg" alt="" class="img-fluid me-3">
-                  <div>
-                    <div class="post-meta d-block"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                    <span>How to Avoid Distraction and Stay Focused During Video Calls?</span>
-                  </div>
-                </a>
-              </li>
-
+              @foreach ($top_posts as $post)
+                <li>
+                  <a href="{{ route('post_detail.index', $post->slug) }}" class="d-flex align-items-center">
+                    <img src="img/post-sq-1.jpg" alt="" class="img-fluid me-3">
+                    <div>
+                      <div class="post-meta d-block"><span class="date">{{ $post->category_name ?? '' }}</span> <span class="mx-1">&bullet;</span> <span>{{ \Carbon\Carbon::parse($post->public_date)->format(config('constant.DATE_FORMAT_VIEW')) }}</span></div>
+                      <span>{{ $post->title ?? '' }}</span>
+                    </div>
+                  </a>
+                </li>
+              @endforeach
             </ul>
+            @endif
 
           </div>
         </div>

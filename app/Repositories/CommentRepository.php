@@ -19,7 +19,8 @@ class CommentRepository
         $query = $this->comment->with('node_comments')
                         ->where('post_id', $post_id)
                         ->whereNull('parent_id')
-                        ->where('is_delete', 0);
+                        ->where('is_delete', 0)
+                        ->orderBy('created_at', 'desc');
         if($limit){
             $query->take($limit);
         }

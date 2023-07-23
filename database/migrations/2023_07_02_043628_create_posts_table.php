@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('category_id')->unsigned();
             $table->string('title', 100);
+            $table->string('slug', 100)->unique();
             $table->string('introduction', 200);
             $table->string('content', 5000);
             $table->bigInteger('author')->unsigned();

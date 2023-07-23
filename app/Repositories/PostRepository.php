@@ -29,7 +29,7 @@ class PostRepository
           if($limit){
                $query->take($limit);
           }
-          return $pagination ? $query->get() : $query->paginate($pagination);
+          return $pagination ? $query->paginate($pagination) : $query->get();
      }
 
      public function getById($id){
@@ -46,6 +46,21 @@ class PostRepository
                     ->findOrFail($id);
      }
 
+     public function getBySlug($slug){
+          return $this->post->with('tags')
+                    ->join('users', 'users.id', 'posts.author')
+                    ->join('categories', 'categories.id', 'posts.category_id')
+                    ->select([
+                         'posts.*',
+                         'categories.name as category_name',
+                         'users.name as author_name'
+                    ])
+                    ->where('posts.is_delete', 0)
+                    ->where('posts.is_public', 1)
+                    ->where('posts.slug', $slug)
+                    ->firstOrFail();
+     }
+
      public function getTopTrending($limit){
           return $this->post->leftJoin('post_views', 'posts.id', 'post_views.post_id')
                          ->join('users', 'users.id', 'posts.author')
@@ -53,11 +68,13 @@ class PostRepository
                          ->where('posts.is_public', 1)
                          ->groupBy([
                               'posts.id',
+                              'posts.slug',
                               'posts.title',
                               'users.name',
                          ])
                          ->select([
                               'posts.id',
+                              'posts.slug',
                               'posts.title',
                               'users.name as author_name',
                               DB::raw('COUNT(post_views.id) as views')

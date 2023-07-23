@@ -17,4 +17,12 @@ class Category extends Model
         'created_by',
         'updated_by'
     ];
+
+    public function limited_posts(){
+        return $this->hasMany(Post::class, 'category_id')
+                ->where('posts.is_delete', 0)
+                ->where('posts.is_public', 1)
+                ->orderBy('posts.updated_at', 'desc')
+                ->take(config('constant.MAX_POST_CATEGORY'));
+    }
 }

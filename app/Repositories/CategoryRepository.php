@@ -17,10 +17,14 @@ class CategoryRepository
 
     public function getCategories($limit = 0, $pagination = 0){
         $query = $this->category->where('is_delete', 0)
-                    ->select(['id', 'name']);
+                    ->select(['id', 'name', 'slug']);
         if($limit){
             $query->take($limit);
         }
         return $pagination ? $query->paginate($pagination) : $query->get();
+    }
+
+    public function getPostAllCategory(){
+        return $this->category->with('limited_posts')->where('is_delete', 0)->get();
     }
 }
