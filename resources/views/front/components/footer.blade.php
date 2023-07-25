@@ -25,7 +25,7 @@
             @if(isset($categories) && count($categories) > 0)
               <ul class="footer-links list-unstyled">
                 @foreach ($categories as $category)
-                  <li><a href="category.html"><i class="bi bi-chevron-right"></i> {{ $category->name ?? '' }}</a></li>
+                  <li><a href="{{ route('category.show', $category->slug) }}"><i class="bi bi-chevron-right"></i> {{ $category->name ?? '' }}</a></li>
                 @endforeach
               </ul>
             @endif

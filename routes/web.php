@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [Front\HomeController::class, 'index'])->name('home.index');
 Route::get('category', [Front\CategoryController::class, 'index'])->name('category.index');
+Route::get('category/{slug}', [Front\CategoryController::class, 'show'])->name('category.show');
 Route::get('post', [Front\PostController::class, 'index'])->name('post.index');
 Route::get('post-detail/{slug}', [Front\PostDetailController::class, 'index'])->name('post_detail.index');
 

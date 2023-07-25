@@ -61,6 +61,22 @@ class PostRepository
                     ->firstOrFail();
      }
 
+     public function getByCategorySlug($category_slug, $pagination = 0){
+          $query = $this->post->join('users', 'users.id', 'posts.author')
+                    ->join('categories', 'categories.id', 'posts.category_id')
+                    ->select([
+                         'posts.*',
+                         'categories.name as category_name',
+                         'categories.slug as category_slug',
+                         'users.name as author_name'
+                    ])
+                    ->where('posts.is_delete', 0)
+                    ->where('posts.is_public', 1)
+                    ->where('categories.slug', $category_slug)
+                    ->orderBy('posts.public_date', 'desc');
+          return $pagination ? $query->paginate($pagination) : $query->get();
+     }
+
      public function getTopTrending($limit){
           return $this->post->leftJoin('post_views', 'posts.id', 'post_views.post_id')
                          ->join('users', 'users.id', 'posts.author')

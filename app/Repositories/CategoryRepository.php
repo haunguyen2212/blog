@@ -27,4 +27,9 @@ class CategoryRepository
     public function getPostAllCategory(){
         return $this->category->with('limited_posts')->where('is_delete', 0)->get();
     }
+
+    public function getBySlug($slug){
+        return $this->category->where('slug', $slug)->firstOrFail();
+    }
+
 }
