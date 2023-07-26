@@ -370,6 +370,7 @@
   <script src="vendor/glightbox/js/glightbox.min.js"></script>
   <script src="vendor/aos/aos.js"></script>
   <script src="vendor/php-email-form/validate.js"></script>
+  <script src="{{ asset('vendor/jquery.min.js') }}"></script>
 
   <!-- Template Main JS File -->
   <script src="js/main.js"></script>

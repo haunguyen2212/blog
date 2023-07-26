@@ -96,7 +96,7 @@
         <ul class="aside-links list-unstyled">
             @foreach ($categories as $category)
                 <li>
-                    <a href="category.html"
+                    <a href="{{ route('category.show', $category->slug) }}"
                     ><i class="bi bi-chevron-right"></i> {{ $category->name ?? '' }}</a
                     >
                 </li>

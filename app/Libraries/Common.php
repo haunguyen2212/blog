@@ -12,11 +12,11 @@ class Common
 {
 
     public function getTags(){
-        return Tag::where('is_delete', 0)->select('id', 'name')->take(config('constant.MAX_TAG'))->get();
+        return Tag::where('is_delete', 0)->select('id', 'name')->orderBy('id', 'asc')->take(config('constant.MAX_TAG'))->get();
     }
 
     public function getCategories(){
-        return Category::where('is_delete', 0)->select('id', 'name', 'slug')->take(config('constant.MAX_CATEGORY'))->get();
+        return Category::where('is_delete', 0)->select('id', 'name', 'slug')->orderBy('id', 'asc')->take(config('constant.MAX_CATEGORY'))->get();
     }
 
     public function getTrendingPost(){

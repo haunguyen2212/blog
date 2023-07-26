@@ -21,7 +21,7 @@
           </li>
           <li><a href="{{ route('post.index') }}">Bài viết</a></li>
           <li><a href="about.html">Thông tin</a></li>
-          <li><a href="contact.html">Liên hệ</a></li>
+          <li><a href="{{ route('contact.index') }}">Liên hệ</a></li>
         </ul>
       </nav><!-- .navbar -->
 

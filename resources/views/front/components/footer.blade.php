@@ -17,7 +17,7 @@
               <li><a href="{{ route('category.index') }}"><i class="bi bi-chevron-right"></i> Danh mục</a></li>
               <li><a href="{{ route('post.index') }}"><i class="bi bi-chevron-right"></i> Bài viết</a></li>
               <li><a href="single-post.html"><i class="bi bi-chevron-right"></i> Thông tin</a></li>
-              <li><a href="about.html"><i class="bi bi-chevron-right"></i> Liên hệ</a></li>
+              <li><a href="{{ route('contact.index') }}"><i class="bi bi-chevron-right"></i> Liên hệ</a></li>
             </ul>
           </div>
           <div class="col-6 col-lg-2">

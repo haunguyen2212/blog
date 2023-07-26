@@ -19,4 +19,6 @@ Route::get('category', [Front\CategoryController::class, 'index'])->name('catego
 Route::get('category/{slug}', [Front\CategoryController::class, 'show'])->name('category.show');
 Route::get('post', [Front\PostController::class, 'index'])->name('post.index');
 Route::get('post-detail/{slug}', [Front\PostDetailController::class, 'index'])->name('post_detail.index');
+Route::get('contact', [Front\ContactController::class, 'index'])->name('contact.index');
+Route::post('contact', [Front\ContactController::class, 'store'])->name('contact.store');
 

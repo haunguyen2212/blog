@@ -1170,7 +1170,7 @@ section {
   background-color: var(--color-primary);
 }
 
-.contact .php-email-form button[type=submit] {
+.contact .php-email-form button[type=button] {
   background: var(--color-primary);
   border: 0;
   padding: 10px 30px;
@@ -1179,7 +1179,7 @@ section {
   cursor: pointer;
 }
 
-.contact .php-email-form button[type=submit]:hover {
+.contact .php-email-form button[type=button]:hover {
   background: rgba(var(--color-primary-rgb), 0.8);
 }
 
