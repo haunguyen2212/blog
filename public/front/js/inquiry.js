@@ -1,4 +1,7 @@
 let INQUIRY = {};
+let loading = $('.loading');
+let success = $('.sent-message');
+let error = $('.error-message');
 
 INQUIRY.init = function(){
     INQUIRY.save();
@@ -16,8 +19,25 @@ INQUIRY.save = function(){
             cache: false,
             processData: false,
             contentType: false,
+            beforeSend: function(){
+                $('.text-danger.error').html('')
+                loading.addClass('d-block');
+                success.removeClass('d-block');
+                error.removeClass('d-block');
+            },
+            complete: function(){
+                loading.removeClass('d-block');
+            },
             success: function(res){
-                console.log(res);
+                form.find('input[type=text], input[type=email], textarea').val('');
+                success.addClass('d-block');
+            },
+            error: function(err){
+                let errors = err.responseJSON.errors;
+                $.each(errors, function(prefix, val){
+                    $('#' + prefix).closest('.form-group').find('.text-danger.error').html(val);
+                });
+                error.addClass('d-block');
             }
         })
     })

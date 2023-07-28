@@ -9,6 +9,7 @@
   <title>@yield('title')</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <!-- Favicons -->
   <link href="img/favicon.png" rel="icon">
@@ -369,8 +370,8 @@
   <script src="vendor/swiper/swiper-bundle.min.js"></script>
   <script src="vendor/glightbox/js/glightbox.min.js"></script>
   <script src="vendor/aos/aos.js"></script>
-  <script src="vendor/php-email-form/validate.js"></script>
   <script src="{{ asset('vendor/jquery.min.js') }}"></script>
+  <script src="{{ asset('vendor/ajax_setup.js') }}"></script>
 
   <!-- Template Main JS File -->
   <script src="js/main.js"></script>

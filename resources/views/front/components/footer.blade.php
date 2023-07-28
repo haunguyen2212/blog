@@ -6,9 +6,9 @@
 
         <div class="row g-5">
           <div class="col-lg-4">
-            <h3 class="footer-heading">About ZenBlog</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam ab, perspiciatis beatae autem deleniti voluptate nulla a dolores, exercitationem eveniet libero laudantium recusandae officiis qui aliquid blanditiis omnis quae. Explicabo?</p>
-            <p><a href="about.html" class="footer-link-more">Learn More</a></p>
+            <h3 class="footer-heading">Về HTR Blog</h3>
+            <p>HTR Blog là nơi tôi chia sẻ và ghi lại những kiến thức, kinh nghiệm  trong lĩnh vực lập trình. Tại đây, bạn sẽ tìm thấy những bài viết, hướng dẫn và mẹo hữu ích để trở thành một lập trình viên xuất sắc.</p>
+            <p><a href="{{ route('about.index') }}" class="footer-link-more">Xem thêm</a></p>
           </div>
           <div class="col-6 col-lg-2">
             <h3 class="footer-heading">Điều hướng</h3>
@@ -16,7 +16,7 @@
               <li><a href="{{ route('home.index') }}"><i class="bi bi-chevron-right"></i> Trang chủ</a></li>
               <li><a href="{{ route('category.index') }}"><i class="bi bi-chevron-right"></i> Danh mục</a></li>
               <li><a href="{{ route('post.index') }}"><i class="bi bi-chevron-right"></i> Bài viết</a></li>
-              <li><a href="single-post.html"><i class="bi bi-chevron-right"></i> Thông tin</a></li>
+              <li><a href="{{ route('about.index') }}"><i class="bi bi-chevron-right"></i> Thông tin</a></li>
               <li><a href="{{ route('contact.index') }}"><i class="bi bi-chevron-right"></i> Liên hệ</a></li>
             </ul>
           </div>

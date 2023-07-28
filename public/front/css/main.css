@@ -1116,7 +1116,7 @@ section {
   display: none;
   color: var(--color-white);
   background: var(--color-red);
-  text-align: left;
+  text-align: center;
   padding: 15px;
   font-weight: 600;
 }
@@ -1181,6 +1181,10 @@ section {
 
 .contact .php-email-form button[type=button]:hover {
   background: rgba(var(--color-primary-rgb), 0.8);
+}
+
+.text-danger.error{
+  text-transform: capitalize;
 }
 
 @keyframes animate-loading {

@@ -20,7 +20,7 @@
             @endif
           </li>
           <li><a href="{{ route('post.index') }}">Bài viết</a></li>
-          <li><a href="about.html">Thông tin</a></li>
+          <li><a href="{{ route('about.index') }}">Thông tin</a></li>
           <li><a href="{{ route('contact.index') }}">Liên hệ</a></li>
         </ul>
       </nav><!-- .navbar -->

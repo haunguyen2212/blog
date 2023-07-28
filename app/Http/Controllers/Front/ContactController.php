@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Front\InquiryRequest;
 use App\Repositories\InquiryRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -22,7 +23,7 @@ class ContactController extends Controller
         return view('front.contact');
     }
 
-    public function store(Request $request){
+    public function store(InquiryRequest $request){
         try{
             DB::beginTransaction();
             $this->inquiry->create([

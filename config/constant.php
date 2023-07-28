@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'VERSION' => time(),
     'DATE_FORMAT_VIEW' => 'd/m/Y',
     'DATE_FORMAT_SQL' => 'Y-m-d',
     'DATETIME_FORMAT_VIEW' => 'd/m/Y H:i:s',

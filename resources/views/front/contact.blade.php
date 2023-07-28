@@ -42,25 +42,28 @@
 
         <div class="form mt-5">
             <form id="frm-inquiry" action="" method="post" role="form" class="php-email-form">
-                @csrf
                 <div class="row">
                     <div class="form-group col-md-6">
                         <input type="text" name="name" class="form-control" id="name" placeholder="Tên của bạn">
+                        <span class="mt-1 text-danger error"></span>
                     </div>
                     <div class="form-group col-md-6">
                         <input type="email" class="form-control" name="email" id="email" placeholder="Địa chỉ email">
+                        <span class="mt-1 text-danger error"></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control" name="subject" id="subject" placeholder="Tiêu đề">
+                    <span class="mt-1 text-danger error"></span>
                 </div>
                 <div class="form-group">
-                    <textarea class="form-control" name="message" rows="5" placeholder="Nội dung"></textarea>
+                    <textarea class="form-control" name="message" id="message" rows="5" placeholder="Nội dung"></textarea>
+                    <span class="mt-1 text-danger error"></span>
                 </div>
                 <div class="my-3">
                     <div class="loading">Đang gửi</div>
-                    <div class="error-message"></div>
-                    <div class="sent-message">Your message has been sent. Thank you!</div>
+                    <div class="error-message">{{ __('message.input_error') }}</div>
+                    <div class="sent-message">{{ __('message.inquiry_success') }}</div>
                 </div>
                 <div class="text-center"><button type="button" id="submit">Gửi yêu cầu</button></div>
             </form>
@@ -71,5 +74,5 @@
 @endsection
 
 @section('script')
-    <script src="{{ asset('front/js/inquiry.js') }}"></script>
+    <script src="{{ asset('front/js/inquiry.js?v='. config('constant.VERSION')) }}"></script>
 @endsection
