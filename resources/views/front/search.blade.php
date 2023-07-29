@@ -1,6 +1,6 @@
 @extends('front.master')
 
-@section('title', $category->name ?? '')
+@section('title', 'Kết quả tìm kiếm')
 
 @section('content')
     <section>
@@ -8,7 +8,7 @@
             <div class="row">
 
                 <div class="col-md-9" data-aos="fade-up">
-                    <h3 class="category-title">Danh mục: {{ $category->name ?? '' }}</h3>
+                    <h3 class="category-title">Tìm kiếm cho: {{ request()->keyword ?? '' }}</h3>
 
                     @if (isset($posts) && count($posts) > 0)
                         @foreach ($posts as $post)

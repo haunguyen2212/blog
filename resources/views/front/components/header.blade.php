@@ -32,11 +32,12 @@
         <i class="bi bi-list mobile-nav-toggle"></i>
 
         <!-- ======= Search Form ======= -->
-        <div class="search-form-wrap js-search-form-wrap">
-          <form action="search-result.html" class="search-form">
+        <div class="search-form-wrap js-search-form-wrap {{ isset(request()->keyword) ? 'active' : '' }}">
+          <form action="{{ route('search.index') }}" method="get" class="search-form">
             <span class="icon bi-search"></span>
-            <input type="text" placeholder="Tìm kiếm bài viết" class="form-control">
+            <input type="text" id="search-post" name="keyword" value="{{ request()->keyword ?? '' }}" placeholder="Tìm kiếm bài viết" class="form-control">
             <button class="btn js-search-close"><span class="bi-x"></span></button>
+            <button type="submit" class="d-none"></button>
           </form>
         </div><!-- End Search Form -->
 

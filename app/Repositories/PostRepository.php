@@ -98,4 +98,20 @@ class PostRepository extends BaseRepository
                          ->take($limit)
                          ->get();
      }
+
+     public function getByTitle($keyword = '', $pagination = 0){
+          $query = $this->model->join('users', 'users.id', 'posts.author')
+                    ->join('categories', 'categories.id', 'posts.category_id')
+                    ->select([
+                         'posts.*',
+                         'categories.name as category_name',
+                         'categories.slug as category_slug',
+                         'users.name as author_name'
+                    ])
+                    ->where('posts.is_delete', 0)
+                    ->where('posts.is_public', 1)
+                    ->where('posts.title', 'LIKE' ,'%'.$keyword.'%')
+                    ->orderBy('posts.public_date', 'desc');
+          return $pagination ? $query->paginate($pagination) : $query->get();
+     }
 }

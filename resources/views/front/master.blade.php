@@ -372,6 +372,7 @@
   <script src="vendor/aos/aos.js"></script>
   <script src="{{ asset('vendor/jquery.min.js') }}"></script>
   <script src="{{ asset('vendor/ajax_setup.js') }}"></script>
+  <script src="{{ asset('front/js/search.js') }}"></script>
 
   <!-- Template Main JS File -->
   <script src="js/main.js"></script>

@@ -18,7 +18,7 @@
                                     <img src="{{ asset('front/img/post-landscape-6.jpg') }}" alt="" class="img-fluid">
                                 </a>
                                 <div class="pe-md-3 pt-2 pt-md-0">
-                                    <div class="post-meta"><span class="date">{{ $category->name ?? '' }}</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+                                    <div class="post-meta"><span class="date">{{ $category->name ?? '' }}</span> <span class="mx-1">&bullet;</span> <span>{{ format_date($post->public_date) }}</span></div>
                                     <h3><a href="{{ route('post_detail.index', $post->slug) }}">{{ $post->title ?? '' }}</a></h3>
                                     <p>{{ $post->introduction ?? '' }}</p>
                                 </div>

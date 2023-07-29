@@ -22,4 +22,5 @@ Route::get('post-detail/{slug}', [Front\PostDetailController::class, 'index'])->
 Route::get('contact', [Front\ContactController::class, 'index'])->name('contact.index');
 Route::post('contact', [Front\ContactController::class, 'store'])->name('contact.store');
 Route::get('about', [Front\AboutController::class, 'index'])->name('about.index');
+Route::get('search', [Front\SearchController::class, 'index'])->name('search.index');
 
