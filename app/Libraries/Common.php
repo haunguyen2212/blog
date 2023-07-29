@@ -75,6 +75,7 @@ class Common
                             'posts.id',
                             'posts.title',
                             'posts.slug',
+                            'posts.public_date',
                             'categories.name as category_name'
                         ])->orderBy('order', 'asc')
                         ->take(config('constant.MAX_POST_FOOTER'))

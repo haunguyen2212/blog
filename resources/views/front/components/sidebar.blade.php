@@ -48,7 +48,7 @@
                     <div class="post-entry-1 border-bottom">
                         <div class="post-meta">
                             <span class="date">{{ $post->category_name ?? '' }}</span>
-                            <span class="mx-1">&bullet;</span> <span>{{ \Carbon\Carbon::parse($post->public_date)->format(config('constant.DATE_FORMAT_VIEW')) }}</span>
+                            <span class="mx-1">&bullet;</span> <span>{{ format_date($post->public_date) }}</span>
                         </div>
                         <h2 class="mb-2">
                             <a href="{{ route('post_detail.index', $post->slug) }}"
@@ -74,7 +74,7 @@
                     <div class="post-entry-1 border-bottom">
                         <div class="post-meta">
                             <span class="date">{{ $post->category_name ?? '' }}</span>
-                            <span class="mx-1">&bullet;</span> <span>{{ \Carbon\Carbon::parse($post->public_date)->format(config('constant.DATE_FORMAT_VIEW')) }}</span>
+                            <span class="mx-1">&bullet;</span> <span>{{ format_date($post->public_date) }}</span>
                         </div>
                         <h2 class="mb-2">
                             <a href="{{ route('post_detail.index', $post->slug) }}"

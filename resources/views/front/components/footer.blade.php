@@ -41,7 +41,7 @@
                   <a href="{{ route('post_detail.index', $post->slug) }}" class="d-flex align-items-center">
                     <img src="img/post-sq-1.jpg" alt="" class="img-fluid me-3">
                     <div>
-                      <div class="post-meta d-block"><span class="date">{{ $post->category_name ?? '' }}</span> <span class="mx-1">&bullet;</span> <span>{{ \Carbon\Carbon::parse($post->public_date)->format(config('constant.DATE_FORMAT_VIEW')) }}</span></div>
+                      <div class="post-meta d-block"><span class="date">{{ $post->category_name ?? '' }}</span> <span class="mx-1">&bullet;</span> <span>{{ format_date($post->public_date) }}</span></div>
                       <span>{{ $post->title ?? '' }}</span>
                     </div>
                   </a>

@@ -12,7 +12,7 @@
                     <div class="col-lg-4">
                         <div class="post-entry-1 lg">
                             <a href="{{ route('post_detail.index', $top_post->first()->slug) }}"><img src="{{ asset('front/img/post-landscape-1.jpg') }}" alt="" class="img-fluid"></a>
-                            <div class="post-meta"><span class="date">{{ $top_post->first()->category_name ?? '' }}</span> <span class="mx-1">&bullet;</span> <span>{{ \Carbon\Carbon::parse($top_post->first()->public_date)->format(config('constant.DATE_FORMAT_VIEW')) }}</span></div>
+                            <div class="post-meta"><span class="date">{{ $top_post->first()->category_name ?? '' }}</span> <span class="mx-1">&bullet;</span> <span>{{ format_date($top_post->first()->public_date) }}</span></div>
                             <h2><a href="{{ route('post_detail.index', $top_post->first()->slug) }}">{{ $top_post->first()->title ?? '' }}</a></h2>
                             <p class="mb-4 d-block">{{ $top_post->first()->introduction ?? '' }}</p>
                         </div>
@@ -23,7 +23,7 @@
                                 @foreach ($top_post->skip(1)->take(ceil($top_post->count()) / 2) as $post)
                                     <div class="post-entry-1">
                                         <a href="{{ route('post_detail.index', $post->slug) }}"><img src="{{ asset('front/img/post-landscape-2.jpg') }}" alt="" class="img-fluid"></a>
-                                        <div class="post-meta"><span class="date">{{ $post->category_name ?? '' }}</span> <span class="mx-1">&bullet;</span> <span>{{ \Carbon\Carbon::parse($post->public_date)->format(config('constant.DATE_FORMAT_VIEW')) }}</span></div>
+                                        <div class="post-meta"><span class="date">{{ $post->category_name ?? '' }}</span> <span class="mx-1">&bullet;</span> <span>{{ format_date($post->public_date) }}</span></div>
                                         <h2><a href="{{ route('post_detail.index', $post->slug) }}">{{ $post->title ?? '' }}</a></h2>
                                     </div>
                                 @endforeach
@@ -32,7 +32,7 @@
                                 @foreach ($top_post->skip(ceil($top_post->count()) / 2 + 1) as $post)
                                     <div class="post-entry-1">
                                         <a href="{{ route('post_detail.index', $post->slug) }}"><img src="{{ asset('front/img/post-landscape-3.jpg') }}" alt="" class="img-fluid"></a>
-                                        <div class="post-meta"><span class="date">{{ $post->category_name ?? '' }}</span> <span class="mx-1">&bullet;</span> <span>{{ \Carbon\Carbon::parse($post->public_date)->format(config('constant.DATE_FORMAT_VIEW')) }}</span></div>
+                                        <div class="post-meta"><span class="date">{{ $post->category_name ?? '' }}</span> <span class="mx-1">&bullet;</span> <span>{{ format_date($post->public_date) }}</span></div>
                                         <h2><a href="{{ route('post_detail.index', $post->slug) }}">{{ $post->title ?? '' }}</a></h2>
                                     </div>
                                 @endforeach
