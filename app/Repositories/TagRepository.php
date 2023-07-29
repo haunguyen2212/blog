@@ -4,17 +4,16 @@ namespace App\Repositories;
 
 use App\Models\Tag;
 
-class TagRepository
+class TagRepository extends BaseRepository
 {
-    private $tag;
 
     public function __construct(Tag $tag)
     {
-        $this->tag = $tag;
+        parent::__construct($tag);
     }
 
     public function getById($id){
-        return $this->tag->find($id);
+        return $this->model->find($id);
     }
 
 }

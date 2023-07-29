@@ -5,17 +5,16 @@ namespace App\Repositories;
 use App\Models\Post;
 use Illuminate\Support\Facades\DB;
 
-class PostRepository
+class PostRepository extends BaseRepository
 {
-     private $post;
 
      public function __construct(Post $post)
      {
-          $this->post = $post;
+          parent::__construct($post);
      }
 
      public function getPosts($limit = 0, $orderBy = 'id', $orderType = 'asc', $pagination = 0){
-          $query = $this->post->with(['tags', 'comments'])
+          $query = $this->model->with(['tags', 'comments'])
                     ->join('users', 'users.id', 'posts.author')
                     ->join('categories', 'categories.id', 'posts.category_id')
                     ->where('posts.is_delete', 0)
@@ -33,7 +32,7 @@ class PostRepository
      }
 
      public function getById($id){
-          return $this->post->with('tags')
+          return $this->model->with('tags')
                     ->join('users', 'users.id', 'posts.author')
                     ->join('categories', 'categories.id', 'posts.category_id')
                     ->select([
@@ -47,7 +46,7 @@ class PostRepository
      }
 
      public function getBySlug($slug){
-          return $this->post->with('tags')
+          return $this->model->with('tags')
                     ->join('users', 'users.id', 'posts.author')
                     ->join('categories', 'categories.id', 'posts.category_id')
                     ->select([
@@ -62,7 +61,7 @@ class PostRepository
      }
 
      public function getByCategorySlug($category_slug, $pagination = 0){
-          $query = $this->post->join('users', 'users.id', 'posts.author')
+          $query = $this->model->join('users', 'users.id', 'posts.author')
                     ->join('categories', 'categories.id', 'posts.category_id')
                     ->select([
                          'posts.*',
@@ -78,7 +77,7 @@ class PostRepository
      }
 
      public function getTopTrending($limit){
-          return $this->post->leftJoin('post_views', 'posts.id', 'post_views.post_id')
+          return $this->model->leftJoin('post_views', 'posts.id', 'post_views.post_id')
                          ->join('users', 'users.id', 'posts.author')
                          ->where('posts.is_delete', 0)
                          ->where('posts.is_public', 1)
