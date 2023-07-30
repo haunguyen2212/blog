@@ -12,7 +12,7 @@ class Common
 {
 
     public function getTags(){
-        return Tag::where('is_delete', 0)->select('id', 'name')->orderBy('id', 'asc')->take(config('constant.MAX_TAG'))->get();
+        return Tag::where('is_delete', 0)->select('id', 'name', 'slug')->orderBy('id', 'asc')->take(config('constant.MAX_TAG'))->get();
     }
 
     public function getCategories(){

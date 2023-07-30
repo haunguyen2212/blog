@@ -111,7 +111,7 @@
         <h3 class="aside-title">Tags</h3>
         <ul class="aside-tags list-unstyled">
             @foreach ($tags as $tag)
-                <li><a href="category.html">{{ $tag->name ?? '' }}</a></li>
+                <li><a href="{{ route('tag.index', $tag->slug) }}">{{ $tag->name ?? '' }}</a></li>
             @endforeach
         </ul>
     </div>

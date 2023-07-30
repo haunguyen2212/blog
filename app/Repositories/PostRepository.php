@@ -69,6 +69,7 @@ class PostRepository extends BaseRepository
                          'categories.slug as category_slug',
                          'users.name as author_name'
                     ])
+                    ->where('categories.is_delete', 0)
                     ->where('posts.is_delete', 0)
                     ->where('posts.is_public', 1)
                     ->where('categories.slug', $category_slug)

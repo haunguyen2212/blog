@@ -23,4 +23,5 @@ Route::get('contact', [Front\ContactController::class, 'index'])->name('contact.
 Route::post('contact', [Front\ContactController::class, 'store'])->name('contact.store');
 Route::get('about', [Front\AboutController::class, 'index'])->name('about.index');
 Route::get('search', [Front\SearchController::class, 'index'])->name('search.index');
+Route::get('tag/{slug}', [Front\TagController::class, 'index'])->name('tag.index');
 

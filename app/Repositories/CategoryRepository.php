@@ -28,7 +28,7 @@ class CategoryRepository extends BaseRepository
     }
 
     public function getBySlug($slug){
-        return $this->model->where('slug', $slug)->firstOrFail();
+        return $this->model->where('slug', $slug)->where('is_delete', 0)->firstOrFail();
     }
 
 }
