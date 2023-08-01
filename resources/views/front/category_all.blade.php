@@ -15,7 +15,7 @@
                             @foreach ($category->limited_posts as $post)
                             <div class="d-md-flex post-entry-2 small-img">
                                 <a href="{{ route('post_detail.index', $post->slug) }}" class="me-4 thumbnail">
-                                    <img src="{{ asset('front/img/post-landscape-6.jpg') }}" alt="" class="img-fluid">
+                                    <img src="{{ asset('front/img/quick-sort-algorithm.png') }}" alt="" class="img-fluid">
                                 </a>
                                 <div class="pe-md-3 pt-2 pt-md-0">
                                     <div class="post-meta"><span class="date">{{ $category->name ?? '' }}</span> <span class="mx-1">&bullet;</span> <span>{{ format_date($post->public_date) }}</span></div>
