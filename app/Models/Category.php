@@ -20,9 +20,14 @@ class Category extends Model
 
     public function limited_posts(){
         return $this->hasMany(Post::class, 'category_id')
+                ->join('users', 'users.id', 'posts.author')
                 ->where('posts.is_delete', 0)
                 ->where('posts.is_public', 1)
-                ->orderBy('posts.updated_at', 'desc')
+                ->orderBy('posts.public_date', 'desc')
+                ->select([
+                    'posts.*',
+                    'users.name as author_name'
+                ])
                 ->take(config('constant.MAX_POST_CATEGORY'));
     }
 }

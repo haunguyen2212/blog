@@ -14,4 +14,5 @@ return [
     'TOP_TRENDING' => 5,
     'MAX_TAG' => 10,
     'MAX_CATEGORY' => 15,
+    'MIN_POST_SHOW_CATEGORY' => 4,
 ];

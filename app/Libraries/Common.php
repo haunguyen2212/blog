@@ -75,6 +75,7 @@ class Common
                             'posts.id',
                             'posts.title',
                             'posts.slug',
+                            'posts.image',
                             'posts.public_date',
                             'categories.name as category_name'
                         ])->orderBy('order', 'asc')
