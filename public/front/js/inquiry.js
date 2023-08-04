@@ -24,9 +24,11 @@ INQUIRY.save = function(){
                 loading.addClass('d-block');
                 success.removeClass('d-block');
                 error.removeClass('d-block');
+                $('#submit').hide();
             },
             complete: function(){
                 loading.removeClass('d-block');
+                $('#submit').show();
             },
             success: function(res){
                 form.find('input[type=text], input[type=email], textarea').val('');
