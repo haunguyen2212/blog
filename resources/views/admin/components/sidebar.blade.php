@@ -29,18 +29,18 @@
 
     <!-- Nav Item - Post Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-            aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePost"
+            aria-expanded="true" aria-controls="collapsePost">
             <i class="fas fa-book"></i>
             <span>Bài viết</span>
         </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapsePost" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Tùy chỉnh bài viết:</h6>
                 <a class="collapse-item" href="buttons.html">Bài viết nổi bật</a>
                 <a class="collapse-item" href="buttons.html">Tất cả bài viết</a>
                 <a class="collapse-item" href="cards.html">Chờ xét duyệt</a>
-                <a class="collapse-item" href="cards.html">Viết bài</a>
+                <a class="collapse-item" href="{{ route('admin.post.create') }}">Viết bài</a>
             </div>
         </div>
     </li>
@@ -118,7 +118,7 @@
     <div class="sidebar-card d-none d-lg-flex">
         <img class="sidebar-card-illustration mb-2" src="{{ asset('admin/img/undraw_rocket.svg') }}" alt="...">
         <p class="text-center mb-2">Tạo 1 bài viết mới ngay bây giờ!</p>
-        <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Viết bài</a>
+        <a class="btn btn-success btn-sm" href="{{ route('admin.post.create') }}">Viết bài</a>
     </div>
 
 </ul>

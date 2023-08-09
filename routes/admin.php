@@ -15,4 +15,5 @@ use Illuminate\Support\Facades\Route;
 */
 Route::group(['prefix' => 'management', 'as' => 'admin.'], function(){
     Route::get('/', [Admin\HomeController::class, 'index'])->name('home.index');
+    Route::resource('post', Admin\PostController::class);
 });
