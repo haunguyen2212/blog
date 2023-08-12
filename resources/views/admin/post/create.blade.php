@@ -21,24 +21,27 @@
         </div>
         <!-- Card Body -->
         <div class="card-body">
-            {!! Form::open(['url' => route('admin.post.create')]) !!}
+            {!! Form::open(['url' => route('admin.post.store'), 'id' => 'form-create', 'enctype' => 'multipart/form-data']) !!}
                 <div class="row">     
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             {!! Form::label('title', 'Tiêu đề:') !!}
                             {!! Form::text('title', '', ['id' => 'title', 'class' => 'form-control']) !!}
+                            <div class="errors text-danger"></div>
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             {!! Form::label('slug', 'Slug:') !!}
                             {!! Form::text('slug', '', ['id' => 'slug', 'class' => 'form-control']) !!}
+                            <div class="errors text-danger"></div>
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             {!! Form::label('category', 'Danh mục:') !!}
                             {!! Form::select('category', category_dropdown(), '', ['id' => 'category', 'class' => 'form-control']) !!}
+                            <div class="errors text-danger"></div>
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
@@ -51,12 +54,14 @@
                         <div class="form-group">
                             {!! Form::label('introduction', 'Tóm tắt chung:') !!}
                             {!! Form::textarea('introduction', '', ['id' => 'introduction', 'class' => 'form-control', 'rows' => 5]) !!}
+                            <div class="errors text-danger"></div>
                         </div>
                     </div>
                     <div class="col-12 col-md-12">
                         <div class="form-group">
-                            {!! Form::label('contents', 'Nội dung:') !!}
-                            {!! Form::textarea('content', '', ['id' => 'contents', 'class' => 'form-control', 'rows' => 40]) !!}
+                            {!! Form::label('content', 'Nội dung:') !!}
+                            {!! Form::textarea('content', '', ['id' => 'content', 'class' => 'form-control tinymce', 'rows' => 40]) !!}
+                            <div class="errors text-danger"></div>
                         </div>
                     </div>
                     <div class="col-12 col-md-12">
@@ -67,9 +72,10 @@
                                 {!! Form::label('tag_'.$key, $tag, ['class' => 'form-check-label']) !!}
                             </div>
                         @endforeach
+                        <div class="errors text-danger"></div>
                     </div>
                     <div class="col-12 col-md-12 d-flex justify-content-center my-3">
-                        {!! Form::button('Lưu bài viết', ['class' => 'btn btn-primary']) !!}
+                        {!! Form::button('Lưu bài viết', ['id' => 'btn-save', 'class' => 'btn btn-primary']) !!}
                     </div>
                 </div>
             {!! Form::close() !!}
@@ -79,7 +85,10 @@
 @endsection
 
 @section('script')
+    <script src="https://cdn.tiny.cloud/1/4gs2fhm0k0rdx6r634mhz96pu2mummji4u3omgqn2ca4ihn5/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="{{ asset('vendor/tinymce_init.js') }}"></script>
     <script>
         $('#collapsePost').addClass('show');
     </script>
+    <script src="{{ asset('admin/js/post/create.js?v='.config('constant.VERSION')) }}"></script>
 @endsection
